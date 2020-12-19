@@ -2,13 +2,40 @@ const Category = require("../models/Category");
 const { validationResult } = require("express-validator");
 
 exports.index = async (req, res) => {
-    let categories = await Category.find({}).populate("videos");
-    try {
-        res.json(categories);
-    } catch (error) {
-        res.status(500).send(error);
-    }
-};
+        let categories = await Category.find({}).populate("video");
+        try {
+            res.json(categories);
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    };
+
+//Version Marcos
+// {
+//     await Category.find({}, function (err, categories) {
+//         if (!err) {
+//             if (categories.length != 0) {
+//                 res.status(200).send(categories);
+//             }
+//             else {
+//                 res.status(400).json({ msg: "No existen categories" });
+//             }
+//         }
+//         else {
+//             console.log(err);
+//         }
+//     }).populate("video");
+// };
+
+//Version anterior
+// {
+//     let categories = await Category.find({}).populate("video");
+//     try {
+//         res.json(categories);
+//     } catch (error) {
+//         res.status(500).send(error);
+//     }
+// };
 
 exports.createCategory = async (req, res) => {
     const errors = validationResult(req);
