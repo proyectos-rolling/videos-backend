@@ -10,6 +10,16 @@ exports.index = async (req, res) => {
     }
 };
 
+exports.show = async (req, res) => {
+    const {_id} = req.params;
+    let videos = await Video.findOne({_id});
+    try {
+        res.json(videos);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
+
 exports.createVideo = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

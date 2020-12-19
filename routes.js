@@ -13,6 +13,7 @@ router.delete("/categories/:_id",categoryController.deleteCategory);
 
 //Rutas de Video
 router.get("/videos",[],videoController.index);
+router.get("/videos/:_id",[],videoController.show);
 router.post("/videos/new",[
     check("owner", "No existe la categoria").notEmpty(),
     check("title", "El titulo es obligatorio!").notEmpty(),
