@@ -1,10 +1,11 @@
 const Video = require("../models/Video");
+const Category = require("../models/Category");
 const {validationResult}=require("express-validator");
 
 exports.index = async (req, res) => {
-    let videos = await Video.find({});
+    let video = await Video.find({});
     try {
-        res.json(videos);
+        res.json(video);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -12,9 +13,9 @@ exports.index = async (req, res) => {
 
 exports.show = async (req, res) => {
     const {_id} = req.params;
-    let videos = await Video.findOne({_id});
+    let video = await Video.findOne({_id});
     try {
-        res.json(videos);
+        res.json(video);
     } catch (error) {
         res.status(500).send(error);
     }

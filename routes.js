@@ -12,14 +12,14 @@ router.post("/categories/new",[
 router.delete("/categories/:_id",categoryController.deleteCategory);
 
 //Rutas de Video
-router.get("/videos",[],videoController.index);
-router.get("/videos/:_id",[],videoController.show);
-router.post("/videos/new",[
+router.get("/video",[],videoController.index);
+router.get("/video/:_id",[],videoController.show);
+router.post("/video/new",[
     check("owner", "No existe la categoria").notEmpty(),
     check("title", "El titulo es obligatorio!").notEmpty(),
     check("url", "falta el URL").notEmpty(),
 ],videoController.createVideo);
-router.delete("/videos/:_id",videoController.deleteVideo);
+router.delete("/video/:_id",videoController.deleteVideo);
 
 //Games routes
 // router.get("/games/", [], gameController.index);
