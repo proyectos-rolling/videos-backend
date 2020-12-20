@@ -26,9 +26,9 @@ exports.createVideo = async (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() })
     }
-    const { url } = req.body;
+    const { url, owner } = req.body;
     try {
-        //Busco si existe un video con ese nombre
+        //Busco si existe un video con esa url
         let video = await Video.findOne({ url });
         if (video) {
             return res.status(400).json({ msg: 'El video ya existe!!' });
@@ -36,6 +36,9 @@ exports.createVideo = async (req, res) => {
         video = new Video(req.body);
         //guardar en la db
         await video.save();
+        const category = await Category.findById(owner);
+        category.videos.push(video);
+        await category.save();
         res.json({ msg: 'Video creado correctamente!!', video })
     } catch (error) {
         console.log(error);
