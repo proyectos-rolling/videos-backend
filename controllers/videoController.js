@@ -3,9 +3,9 @@ const Category = require("../models/Category");
 const {validationResult}=require("express-validator");
 
 exports.index = async (req, res) => {
-    let video = await Video.find({});
+    let videos = await Video.find({});
     try {
-        res.json(video);
+        res.json(videos);
     } catch (error) {
         res.status(500).send(error);
     }

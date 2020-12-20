@@ -66,7 +66,7 @@ exports.deleteCategory = async (req, res) => {
         if (!category) {
             return res.status(400).json({ msg: "La categoria no existe!" });
         }
-        if (category.video.length > 0) {
+        if (category.videos.length > 0) {
             return res.status(400).json({ msg: "la categoria debe estar vacia para borrarse" })
         }
         await category.deleteOne()
