@@ -54,6 +54,10 @@ exports.deleteVideo = async (req, res) => {
             return res.status(400).json({ msg: "El video no existe!" });
         }
         await video.deleteOne()
+        const category = await Category.findOne({_id: video.owner});
+        console.log("video category ID", category._id)
+        category.videos.remove(video)
+        await category.save();
         res.json({ msg: "El video fue eliminado" });
     } catch (error) {
         console.log(error);
