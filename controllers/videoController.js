@@ -64,3 +64,20 @@ exports.deleteVideo = async (req, res) => {
         res.status(400).json({ msg: "hubo un error", error: error });
     }
 };
+
+exports.newComment = async (req, res) => {
+    const { _id } = req.params;
+    try {
+      let video = await Video.findOne({ _id });
+      if (!video) {
+        return res.status(400).json({ msg: "El video no existe!" });
+      }
+      video.comments.push(req.body.comment)
+      await video.save()
+      res.json({ msg: "El comnetario ha sido agregado" });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ msg: "hubo un error", error: error });
+    }
+
+}

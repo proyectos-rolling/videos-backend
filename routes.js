@@ -21,6 +21,13 @@ router.post("/videos/new",[
 ],videoController.createVideo);
 router.delete("/videos/:_id",videoController.deleteVideo);
 
+//Rutas de comentarios
+router.post(
+  "/videos/:_id/comments/new",
+  [check("comment", "El comentario no debe estar vacío").notEmpty()],
+  videoController.newComment
+);
+
 //Games routes
 // router.get("/games/", [], gameController.index);
 // router.get("/games/active", [], gameController.active);

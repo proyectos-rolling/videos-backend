@@ -11,6 +11,10 @@ const VideoSchema = mongoose.Schema({
         required:true,
         trim:true
     },
+    comments:{
+        type: [String],
+        default: []
+    },
     owner:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Category"
