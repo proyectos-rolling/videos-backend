@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); 
 
 const URI = process.env.DB_MONGO;
 const OPTIONS = {
